@@ -11,15 +11,39 @@ import os
 TOKEN = os.getenv("DISCORD_BOT_TOKEN")  # Store this in Railway env variables
 USER_AUTH_TOKEN = os.getenv("DISCORD_USER_AUTH_TOKEN")  # Needs a real user token
 CLOUDFLARE_EDGES = [
-    "https://cdn.discordapp.com",
-    "https://cdn-discordapp-com.global.ssl.fastly.net",
-    "https://discordapp-cdn-xyz.cloudflare.com",
+    "https://cdn.discordapp.com", # San Francisco (USA)
+    "https://cdn-discordapp-com.global.ssl.fastly.net", # Berlin (Germany)
+    "https://discordapp-cdn-xyz.cloudflare.com", # Tokyo (Japan)
+    "https://discordapp-cdn-eu.cloudflare.com",  # EU
+    "https://cdn.discordapp-uswest.com",  # US West
+    "https://cdn.discordapp-sg.cloudflare.com",  # Singapore
+    "https://cdn.discordapp-uk1.cloudflare.com",  # London (UK)
+    "https://cdn.discordapp-us-east.cloudflare.com",  # US East
+    "https://cdn.discordapp-br1.cloudflare.com",  # Brazil (South America)
+    "https://cdn.discordapp-au1.cloudflare.com",  # Sydney (Australia)
+    "https://cdn.discordapp-kr1.cloudflare.com",  # South Korea
+    "https://cdn.discordapp-ca1.cloudflare.com",  # Canada (Toronto)
+    "https://cdn.discordapp-za1.cloudflare.com",  # South Africa (Africa)
+    "https://cdn.discordapp-jp1.cloudflare.com",  # Japan
+    "https://cdn.discordapp-in1.cloudflare.com",  # India
 ]
 #made by @waltersspecialmethamphetamine on github
 CLOUDFLARE_LOCATIONS = {
-    "cdn.discordapp.com": (37.7749, -122.4194),  # San Francisco
-    "cdn-discordapp-com.global.ssl.fastly.net": (52.5200, 13.4050),  # Berlin
-    "discordapp-cdn-xyz.cloudflare.com": (35.6895, 139.6917),  # Tokyo
+    "cdn.discordapp.com": (37.7749, -122.4194),  # San Francisco, USA
+    "cdn-discordapp-com.global.ssl.fastly.net": (52.5200, 13.4050),  # Berlin, Germany
+    "discordapp-cdn-xyz.cloudflare.com": (35.6895, 139.6917),  # Tokyo, Japan
+    "discordapp-cdn-eu.cloudflare.com": (48.8566, 2.3522),  # Paris
+    "cdn.discordapp-uswest.com": (34.0522, -118.2437),  # Los Angeles
+    "cdn.discordapp-sg.cloudflare.com": (1.3521, 103.8198),  # Singapore
+    "cdn.discordapp-uk1.cloudflare.com": (51.5074, -0.1278),  # London, England
+    "cdn.discordapp-us-east.cloudflare.com": (40.7128, -74.0060),  # New York, USA
+    "cdn.discordapp-br1.cloudflare.com": (-23.5505, -46.6333),  # São Paulo, Brazil
+    "cdn.discordapp-au1.cloudflare.com": (-33.8688, 151.2093),  # Sydney, Australia
+    "cdn.discordapp-kr1.cloudflare.com": (37.5665, 126.9780),  # Seoul, South Korea
+    "cdn.discordapp-ca1.cloudflare.com": (43.65107, -79.347015),  # Toronto, Canada
+    "cdn.discordapp-za1.cloudflare.com": (-25.7460, 28.1870),  # Pretoria, South Africa
+    "cdn.discordapp-jp1.cloudflare.com": (35.6762, 139.6503),  # Tokyo, Japan
+    "cdn.discordapp-in1.cloudflare.com": (28.6139, 77.2090),  # New Delhi, India
 }
 
 bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
@@ -28,7 +52,7 @@ bot = commands.Bot(command_prefix="/", intents=discord.Intents.all())
 # 🔹 Generate a Unique Avatar
 # ==========================
 def generate_random_avatar():
-    size = (200, 200)
+    size = (250, 250)
     img = Image.new("RGB", size)
 
     pixels = img.load()
